@@ -45,4 +45,5 @@ var gestionPages = {
     return pageHTML;
   },
 };
+// Test
 module.exports = gestionPages;
