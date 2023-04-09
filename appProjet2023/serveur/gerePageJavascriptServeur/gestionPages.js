@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 var gestionPages = {
 url : null,
 extension : null,
@@ -14,9 +16,29 @@ initialisation : function(url, extension, requete, reponse, queryString){
     },
 
     envoyerDonneeUtilisateur : function(){
-        this.reponse.writeHead(200,{'Content-Type' : "text/html"});
-        this.reponse.write("<h1>Test<h1>");
+        var donnee = this.genereDonneeAEnvoyer();
+        this.reponse.writeHead(200,{'Content-Type' : donnee.contentType});
+        this.reponse.write(donnee.content);
         this.reponse.end();
+    },
+
+    genereDonneeAEnvoyer : function(){
+        var donnee = {};
+        var dossier = "";
+        
+        if(this.extension === ".html" || this.url.pathname==="/"){
+           if(this.url.pathname=== "/"){
+              this.url.pathname = "/index.html";
+            }
+            dossier = "html";
+            donnee.contentType = "text/html";
+            donnee.content = this.generePageHtml(dossier);
+        }
+        return donnee;
+    },
+    generePageHtml : function(dossier){
+        var pageHTML = "";
+        var headerHTML = fs.readFileSync("html/common/header.html", "UTF-8");
     }
 
     }

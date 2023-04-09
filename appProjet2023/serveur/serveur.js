@@ -14,7 +14,10 @@ var parametreServeur = function(requete,reponse){
     var extension = monUrl.pathname.substring(monUrl.pathname.indexOf("."),monUrl.pathname.length);
     gestionPages.initialisation(monUrl, extension, requete, reponse, urlQueryString);    
     
-    gestionPages.envoyerDonneeUtilisateur();
+    if(gestionPages.url.pathname !== "/favicon.ico"){
+        gestionPages.envoyerDonneeUtilisateur();
+    }
+    
 }
 
 //creation du serveur sur le port 8282 avec une fonction d'une demande par un utilisateur
