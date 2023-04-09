@@ -3,7 +3,7 @@ var url = require("url"); // pareille pour url
 var fs = require("fs"); // pour utilise la gestion des fichiers
 require("remedial"); // sert a remplie no template
 var querystring = require("querystring");
-var gestionPages = require("./gerePageJavascriptServeur\gestionPages.js") 
+var gestionPages = require("./gerePageJavascriptServeur/gestionPages.js") 
 
 
 // la fonction parametreServeur prend 2 elements en parametre 

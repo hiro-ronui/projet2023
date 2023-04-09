@@ -1,2 +1,3 @@
 # Git ignore node_modules
 appProjet2023/node_modules/serveur/node_modules/
+appProjet2023/package-lock.json
