@@ -46,4 +46,19 @@ var gestionPages = {
     }
 
     }
+<<<<<<< HEAD
+=======
+    return donnee;
+  },
+  generePageHtml: function (dossier) {
+    var pageHTML = '';
+    var headerHTML = fs.readFileSync('../' + dossier + '/header.html', 'UTF-8');
+    var footerHTML = fs.readFileSync('../' + dossier + '/footer.html', 'UTF-8');
+    var page = fs.readFileSync('../' + dossier + this.url.pathname, 'UTF-8');
+    pageHTML = headerHTML + page + footerHTML;
+    return pageHTML;
+  },
+};
+// Test
+>>>>>>> 057fe02c4675db84164610bf7ca53f621948dbdd
 module.exports = gestionPages;
