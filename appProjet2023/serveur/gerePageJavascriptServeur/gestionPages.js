@@ -46,8 +46,6 @@ var gestionPages = {
     }
 
     }
-<<<<<<< HEAD
-=======
     return donnee;
   },
   generePageHtml: function (dossier) {
@@ -60,5 +58,4 @@ var gestionPages = {
   },
 };
 // Test
->>>>>>> 057fe02c4675db84164610bf7ca53f621948dbdd
 module.exports = gestionPages;
