@@ -1,26 +1,26 @@
-var fs = require('fs');
+var fs = require("fs");
 
 var gestionPages = {
-  url: null,
-  extension: null,
-  requete: null,
-  reponse: null,
-  queryString: null,
+url : null,
+extension : null,
+requete : null,
+reponse : null,
+queryString : null,
 
-  initialisation: function (url, extension, requete, reponse, queryString) {
+initialisation : function(url, extension, requete, reponse, queryString){
     this.url = url;
     this.extension = extension;
     this.requete = requete;
     this.reponse = reponse;
     this.queryString = queryString;
-  },
+    },
 
-  envoyerDonneeUtilisateur: function () {
-    var donnee = this.genereDonneeAEnvoyer();
-    this.reponse.writeHead(200, { 'Content-Type': donnee.contentType });
-    this.reponse.write(donnee.content);
-    this.reponse.end();
-  },
+    envoyerDonneeUtilisateur : function(){
+        var donnee = this.genereDonneeAEnvoyer();
+        this.reponse.writeHead(200,{'Content-Type' : donnee.contentType});
+        this.reponse.write(donnee.content);
+        this.reponse.end();
+    },
 
     genereDonneeAEnvoyer : function(){
         var donnee = {};
@@ -46,16 +46,4 @@ var gestionPages = {
     }
 
     }
-    return donnee;
-  },
-  generePageHtml: function (dossier) {
-    var pageHTML = '';
-    var headerHTML = fs.readFileSync('../' + dossier + '/header.html', 'UTF-8');
-    var footerHTML = fs.readFileSync('../' + dossier + '/footer.html', 'UTF-8');
-    var page = fs.readFileSync('../' + dossier + this.url.pathname, 'UTF-8');
-    pageHTML = headerHTML + page + footerHTML;
-    return pageHTML;
-  },
-};
-// Test
 module.exports = gestionPages;
