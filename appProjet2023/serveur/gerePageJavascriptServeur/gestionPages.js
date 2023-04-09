@@ -38,9 +38,11 @@ initialisation : function(url, extension, requete, reponse, queryString){
     },
     generePageHtml : function(dossier){
         var pageHTML = "";
-        var headerHTML = fs.readFileSync("html/header.html", "UTF-8");
-        var footerHTML = fs.readFileSync("html/footer.html", "UTF-8");
+        var headerHTML = fs.readFileSync(dossier+"/header.html", "UTF-8");
+        var footerHTML = fs.readFileSync(dossier+"/footer.html", "UTF-8");
         var page = ffs.readFileSync(dossier+this.url.pathname, "UTF-8");
+        pageHTML = headerHTML + page + footerHTML;
+        return pageHTML;
     }
 
     }
