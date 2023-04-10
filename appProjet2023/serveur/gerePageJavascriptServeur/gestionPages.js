@@ -38,11 +38,12 @@ var gestionPages = {
     },
     generePageHtml : function(dossier){
         var pageHTML = "";
-        var headerHTML = fs.readFileSync(dossier+"/header.html", "UTF-8");
-        var footerHTML = fs.readFileSync(dossier+"/footer.html", "UTF-8");
-        var page = ffs.readFileSync(dossier+this.url.pathname, "UTF-8");
+        var headerHTML = fs.readFileSync("../" + dossier+"/header.html", "UTF-8");
+        var footerHTML = fs.readFileSync("..:" +dossier+"/footer.html", "UTF-8");
+        var page = fs.readFileSync("../" + dossier+this.url.pathname, "UTF-8");
         pageHTML = headerHTML + page + footerHTML;
         return pageHTML;
     }
   }
 module.exports = gestionPages;
+d
