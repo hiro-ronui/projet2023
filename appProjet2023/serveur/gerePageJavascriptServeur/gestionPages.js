@@ -15,6 +15,7 @@ var gestionPages = {
     this.queryString = queryString;
   },
 
+//..............................................................................
   envoyerDonneeUtilisateur: function () {
     var donnee = this.genereDonneeAEnvoyer();
     this.reponse.writeHead(200, { 'Content-Type': donnee.contentType });
@@ -22,7 +23,8 @@ var gestionPages = {
     this.reponse.end();
   },
 
-    genereDonneeAEnvoyer : function(){
+// .............................................................................
+  genereDonneeAEnvoyer : function(){
         var donnee = {};
         var dossier = "";
         
@@ -33,9 +35,15 @@ var gestionPages = {
             dossier = "html";
             donnee.contentType = "text/html";
             donnee.content = this.generePageHtml(dossier);
+        } else if(this.extension === ".css"){
+          dossier = "css";
+            donnee.contentType = "text/css";
+            donnee.content = fs.readFileSync("../" + dossier+this.url.pathname);
         }
         return donnee;
     },
+    
+//............................................................................
     generePageHtml : function(dossier){
         var pageHTML = "";
         var headerHTML = fs.readFileSync("../" + dossier+"/header.html", "UTF-8");
