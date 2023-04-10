@@ -44,18 +44,5 @@ var gestionPages = {
         pageHTML = headerHTML + page + footerHTML;
         return pageHTML;
     }
-
-    }
-    return donnee;
-  },
-  generePageHtml: function (dossier) {
-    var pageHTML = '';
-    var headerHTML = fs.readFileSync('../' + dossier + '/header.html', 'UTF-8');
-    var footerHTML = fs.readFileSync('../' + dossier + '/footer.html', 'UTF-8');
-    var page = fs.readFileSync('../' + dossier + this.url.pathname, 'UTF-8');
-    pageHTML = headerHTML + page + footerHTML;
-    return pageHTML;
-  },
-};
-// Test
+  }
 module.exports = gestionPages;
