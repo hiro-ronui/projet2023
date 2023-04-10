@@ -6,6 +6,7 @@ var gestionPages = {
   requete: null,
   reponse: null,
   queryString: null,
+  objetErrore: null,
 
   initialisation: function (url, extension, requete, reponse, queryString) {
     this.url = url;
@@ -13,6 +14,7 @@ var gestionPages = {
     this.requete = requete;
     this.reponse = reponse;
     this.queryString = queryString;
+    this.objetErrore = {};
   },
 
 //..............................................................................
@@ -27,19 +29,36 @@ var gestionPages = {
   genereDonneeAEnvoyer : function(){
         var donnee = {};
         var dossier = "";
-        
+        //................ Partie HTML/ CSS / JAVASCRIPT ................................
         if(this.extension === ".html" || this.url.pathname==="/"){
            if(this.url.pathname=== "/"){
               this.url.pathname = "/index.html";
             }
+            //................ Partie HTML ................................
             dossier = "html";
             donnee.contentType = "text/html";
             donnee.content = this.generePageHtml(dossier);
+            //................ Partie CSS ................................
         } else if(this.extension === ".css"){
           dossier = "css";
             donnee.contentType = "text/css";
             donnee.content = fs.readFileSync("../" + dossier+this.url.pathname);
-        }
+            //................ Partie JAVASCRIPT ................................
+        } else if(this.extension === ".js"){
+          dossier = "js";
+            donnee.contentType = "application/javasript";
+            donnee.content = fs.readFileSync("../" + dossier+this.url.pathname);
+            //................ Partie RESSOURCE PNG ................................
+      }   else if(this.extension === ".png"){
+          dossier = "ressources/images";
+            donnee.contentType = "image/png";
+            donnee.content = fs.readFileSync("../" + dossier+this.url.pathname);
+             //................ Partie RESSOURCE JPG ................................
+    }      else if(this.extension === ".jpeg"){
+      dossier = "ressources/images";
+        donnee.contentType = "image/jpg";
+        donnee.content = fs.readFileSync("../" + dossier+this.url.pathname);
+    }
         return donnee;
     },
     
@@ -50,6 +69,13 @@ var gestionPages = {
         var footerHTML = fs.readFileSync("../" +dossier+"/footer.html", "UTF-8");
         var page = fs.readFileSync("../" + dossier+this.url.pathname, "UTF-8");
         pageHTML = headerHTML + page + footerHTML;
+
+        try{
+          //this.objetErrore.pseudo ="toto et un idiot";
+          pageHTML = pageHTML.supplant(this.objetErrore);
+        }catch(e){
+
+        }
         return pageHTML;
     }
   }
